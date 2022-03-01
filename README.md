@@ -14,7 +14,7 @@ go install github.com/sirkon/metamorph@latest
 
 ## Glossary and definitions
 
-* Primary structure is one that will have generated conversion functions in its package.
+* Primary structure is one that comes first in utility arguments.
 * Secondary structure is one that is not primary.
 * Primary package is the package containing primary structure.
 * Secondary package is the package containing secondary structure.
@@ -56,6 +56,8 @@ Also, remember, if:
 * there are fields with matchable names and types for all branches of this `oneof`
 
 Then the generator will make proper conversions for them too.
+
+Generated functions (or method for primary -> secondary) will be put into the primary package.
 
 ## Notice
 
