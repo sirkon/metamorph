@@ -15,7 +15,7 @@ import (
 )
 
 // New конструктор генератора сущностей
-func New(primPkg, primName, secPkg, secName, method string, customErrs bool) (*Generator, error) {
+func New(primPkg, primName, secPkg, secName, method string, customErrs bool, xclude []string) (*Generator, error) {
 	var g Generator
 
 	prim := structDescription{
@@ -33,6 +33,11 @@ func New(primPkg, primName, secPkg, secName, method string, customErrs bool) (*G
 	}
 
 	g.customErrs = customErrs
+	g.xclude = map[string]struct{}{}
+	for _, s := range xclude {
+		g.xclude[s] = struct{}{}
+	}
+
 	g.prim = structs[prim.String()]
 	g.sec = structs[sec.String()]
 	g.method = method
@@ -45,6 +50,7 @@ type Generator struct {
 	sec        *types.Named
 	method     string
 	customErrs bool
+	xclude     map[string]struct{}
 
 	fs    *token.FileSet
 	fqsec int
@@ -124,9 +130,18 @@ func (g *Generator) generate(
 
 		match, oomatch := g.getPrimFieldConversionDiscrs(field, matches, oos, oopassed)
 
+		var xclude bool
+		if match != nil {
+			_, xclude = g.xclude[match.prim.Name()]
+			if xclude {
+				primMismatch = true
+				secMismatch = true
+			}
+		}
+
 		r.N()
 		switch {
-		case match != nil:
+		case match != nil && !xclude:
 			if _, ok := match.descr.(*FieldMatchNoMatch); ok {
 				continue
 			}
@@ -242,8 +257,18 @@ func (g *Generator) generate(
 		}
 
 		match, oomatch := g.getSecFieldConversionDiscrs(field, matches, oos)
+
+		var xclude bool
+		if match != nil {
+			_, xclude = g.xclude[match.prim.Name()]
+			if xclude {
+				primMismatch = true
+				secMismatch = true
+			}
+		}
+
 		switch {
-		case match != nil:
+		case match != nil && !xclude:
 			if _, ok := match.descr.(*FieldMatchNoMatch); ok {
 				continue
 			}

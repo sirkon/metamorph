@@ -6,9 +6,9 @@ import (
 
 	"github.com/sirkon/errors"
 	"github.com/sirkon/gogh"
+	"github.com/sirkon/jsonexec"
 	"github.com/sirkon/metamorph/internal/generator"
 	"github.com/sirkon/metamorph/internal/imports"
-	"github.com/sirkon/jsonexec"
 )
 
 // GenerateCommand generation command
@@ -16,6 +16,7 @@ type GenerateCommand struct {
 	Primary          structPath  `arg:"" help:"Primary structure to generate conversions in its package. Must look like <rel-path>:<name>." predictor:"local-struct-path"`
 	Secondary        structPath  `arg:"" help:"Secondary structure to generate conversions to and from the primary one. Must look like <pkg-path>:<name>." predictor:"free-struct-path"`
 	PrimaryMethod    string      `short:"m" help:"MethodPrimary name for the primary -> secondary conversion. Free function will be generated instead if not set."`
+	ExcludeFields    []string    `short:"x" help:"Exclude these fields from automatic conversion generation."`
 	StructuredErrors packagePath `short:"e" help:"Path to structured errors package." predictor:"outer-package"`
 }
 
@@ -36,6 +37,7 @@ func (c *GenerateCommand) Run(rctx *RunContext) error {
 		c.Secondary.name,
 		c.PrimaryMethod,
 		c.StructuredErrors.path != "",
+		c.ExcludeFields,
 	)
 	if err != nil {
 		return errors.Wrap(err, "setup generator")

@@ -35,6 +35,8 @@ github.com/sirkon/go-format v0.1.2 h1:rv/Gp5qXmNrSaqm6ygxXEdDOuMpGYbcW+QScHpGgWx
 github.com/sirkon/go-format v0.1.2/go.mod h1:qaECyMww07bEcWjztGZ2vj1LT7mmp0KJRMZRYci9JUw=
 github.com/sirkon/go-format/v2 v2.0.1 h1:sVWYolXTIv7tAVjzH6OOeFolzPPyTSfw0ipbSdk0how=
 github.com/sirkon/go-format/v2 v2.0.1/go.mod h1:YvuK2qmh0vTuALNIEr+VvBirUija3PUayjzref5LEh0=
+github.com/sirkon/gogh v0.9.0 h1:pa2GiJv3VIxpVxyKKQiwNTVhPoqUA+z0QE0DsINcEik=
+github.com/sirkon/gogh v0.9.0/go.mod h1:Mu1SAjf64s7fvlMQvOdnaxUmmeOORGbm8K6B/5Anzxc=
 github.com/sirkon/jsonexec v0.0.1 h1:ug1Cz1/GuuUrsr6LYN1ljIUUDqRiO0Gv2yRUo6jao8w=
 github.com/sirkon/jsonexec v0.0.1/go.mod h1:YO5hFk8oewQX9VpGPKdObnhAA7tjHGt8vUGoaiEa1G8=
 github.com/sirkon/message v1.5.1 h1:WkWYJGan4rkpAkZmHC0+Sy2da4orydz1lM6zL+CXAVQ=
