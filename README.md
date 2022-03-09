@@ -71,5 +71,5 @@ function where you can write down a proper conversion of the field.
 ## Heurstics
 
 metamorph applies heuristics to find conversion functions and it may choose wrong functions at times. You may exclude
-fields where it choose wrong conversion funcs. Once a field excluded a manual conversion func is guaranteed so you may
+fields where it choose wrong conversion funcs. Once a field excluded a manual conversion func call is guaranteed so you may
 write a proper conversion.
