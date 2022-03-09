@@ -60,7 +60,7 @@ relation of equivalency.
 
 Generated functions (or method for primary -> secondary) will be put into the primary package.
 
-## Notice
+## Herustics
 
 metamorph look for conversion functions itself. It can be either method on structure with no arguments in case of
 primary -> secondary conversion or a method with a single parameter with one of types and return parameter (and possibly
@@ -68,7 +68,7 @@ error) of another type. This may lead to a wrong choice of conversion func. In t
 field name value to exclude it from code generation. The parameter guaranteed there will be a call to not existing 
 function where you can write down a proper conversion of the field.
 
-## Heurstics
+## If heuristcs chose a wrong conversion func/method
 
 metamorph applies heuristics to find conversion functions and it may choose wrong functions at times. You may exclude
 fields where it choose wrong conversion funcs. Once a field excluded a manual conversion func call is guaranteed so you may
